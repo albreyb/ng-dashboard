@@ -2,11 +2,44 @@
 <html>
 <head>
 	<title>Ng-Dashboard</title>
+	<link rel="stylesheet" href="app/styles/main.css">
 </head>
 <body ng-app="ng-dashboard">
-	<div ui-view></div>
+	<div ng-controller="TasksController">
+		<div id="tasksContainer">
+			<form>
+				<input type="text" placeholder="insert task here" ng-model="name">
+				<input type="date" placeholder="done by" ng-model='dateDoneBy'>
+				<input type="time" placeholder="reminder" ng-model="reminderTime">
+				<input type="submit" ng-click="addTask(name, dateDoneBy, reminderTime)">
+			</form>
+
+			<div ng-repeat="task in tasks" class="task" ng-class="{taskDone: task.done}">
+				<input type="checkbox" ng-click="taskToggle($index)">
+				<span>{{task.name}}</span>
+			</div>	
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
 	<!-- app dependencies -->
 	<script src="./lib/angular/angular.min.js"></script>
+	<script src="./lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="./lib/jquery/dist/jquery.min.js"></script>
+	<script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+
+	<!-- module files  -->
 	<script src="./app/app.js"></script>
 	<script src="./app/tasks/tasksController.js"></script>
 	<script src="./app/tasks/tasks.js"></script>
